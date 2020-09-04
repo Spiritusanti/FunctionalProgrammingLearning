@@ -41,5 +41,16 @@ console.log(array, array2, array3);
 // -> as long as the input is the same the output will be the same!
 
 
-// 
+// can we do anything without side effects? Are pure functions real?
+// input and output are of the outside world, we have to interact with the world to do anything.
+// goal of FP is to minimize side effects. 
+
+// what should FP functions do:
+// 1. should have 1 task
+// 2. should always have a return statement
+// 3. pure
+// 4. no shared state
+// 5. Immutable state
+// 6. Composable
+// 7. predictable
 
