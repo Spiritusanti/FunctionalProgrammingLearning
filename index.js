@@ -54,3 +54,30 @@ console.log(array, array2, array3);
 // 6. Composable
 // 7. predictable
 
+
+//IDEMPOTENCE:
+//a function that always returns or does what we expect it to do.
+function notGood(num) {
+  return Math.random(num)
+}
+
+notGood()
+
+//deleting a user from a database in an idempotent operation.
+//API calls are example of idempotent operations.
+//Making our code predictable is hugely valuable in distributed computing.
+
+// IMPERATIVE VS DECLARATIVE
+// imperitative code tells the machine what to do and how to do it.
+// declarative code tells it what to do and what should happen.
+
+// computers function more imperatively vs humans which are more declarative.
+
+// example: for loops!
+// more imperative:
+for(let i=0; i < 1000; i++){
+  console.log(i)
+}
+
+// more declarative:
+[1,2,3].forEach(item => console.log(item))
