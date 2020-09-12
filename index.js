@@ -81,3 +81,72 @@ for(let i=0; i < 1000; i++){
 
 // more declarative:
 [1,2,3].forEach(item => console.log(item))
+
+//declarative code will always end up bing compiled down or interepted down into imperative code or machine code.
+
+
+// immutability --> this data is not mine so I should only borrow it to make a copy so that others can also access the original.
+const obj = {name: 'Jacob'}
+function clone(obj) {
+  return {...obj}; //this is pure
+}
+obj.name = 'Nana' // <-- this is state mutation.
+
+//ideally we should change it with a function.
+function updateName(obj) {
+  const obj2 = clone(obj);
+  obj2.name = 'Nana'
+  return obj2
+}
+
+const updatedObj = updateName(obj)
+
+console.log(obj, updatedObj)
+
+
+//Higher Order Functions (HOF) --> functions that do one of two things
+//1. takes one or more functions as arguments
+//2. returns a function as a result
+//example:
+
+const hof = () => () => 5;
+// hof() returns ()
+//hof()() returns 5
+
+//Closure --> mechanism for creating some sort of state
+//--> we create closures when a functions acts as a variable outside of the main parent scope.
+
+const closure = function(){
+  let count = 0;
+  return function increment() {
+    count++
+    return count;
+  }
+}
+
+const incrementFn = closure();
+
+// be careful not to modify the state.
+
+// currying --> technique of translating the evaluation of a function that takes multiple arguments into a sequence of functions that only take a single argument at a time.
+//example:
+
+const multiply = (a, b) => a*b; //base function
+
+
+const curriedMultiply = (a) => (b) => a*b; //curried function
+curriedMultiply(5)(3);
+//now we can create multiple utility functions:
+const curriedMultiplyBy5 = curriedMultiply(5);
+//--> the first part of the function only has to be run once.
+
+//Partial Application
+//--> a way to partially apply a function with a smaller number of parameters
+
+//example:
+const multiply2 = (a, b, c) => a*b*c;
+const partialMultiply2By5 = multiply2.bind(null, 5);
+
+partialMultiply2By5(4, 10);
+
+//Partial application on the second call expects all the arguments vs currying which expects each argument one at a time.
