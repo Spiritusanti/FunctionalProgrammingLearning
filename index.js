@@ -200,3 +200,10 @@ fn1(fn2(fn3(50)));
 compose(fn1, fn2, fn3)(50) // data --> fn3 --> fn2 --> fn1
 pipe(fn3, fn2, fn1)(50) //data --> fn3 --> fn2 --> fn1
 //same result because they undergo the same operations.
+
+
+// Arity --> the number of arguments a function takes.
+// in the functional programming world it is a good practice that the fewer number of parameters a function has the more usable it is. The parameters the function has the more difficult it is to compose it.
+
+// Is functional programming the answer to everything?
+// no but it is very good for distributed systems, parallelism, but, it depends on the problem you have. Building a game for example or the Amazon shopping cart we built at the beggining of the section.
