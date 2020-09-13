@@ -150,3 +150,53 @@ const partialMultiply2By5 = multiply2.bind(null, 5);
 partialMultiply2By5(4, 10);
 
 //Partial application on the second call expects all the arguments vs currying which expects each argument one at a time.
+
+
+// Memoization ~~~~ Caching
+
+function addTo80(n) {
+  return n + 80;
+}
+
+let cache = {}; //it is better to have this inside the function not the global scope.
+function memoizeAddTo80(n) {
+  //instead we would do this:
+  //let cache = {};
+  // return  function(n) {
+    //   if (n in cache) {
+    //   return cache.n;
+    // } else {
+    //   cache[n] = n + 80
+    //   return cache[n]
+    // }
+  // }
+  if (n in cache) {
+    return cache.n;
+  } else {
+    cache[n] = n + 80
+    return cache[n]
+  }
+}
+//this allows us to check and see if we have already performed an operation that takes a long time prior to running. Saves us valuable time.
+
+//memoization --> a specific form of caching that involves caching the return value of a function based on its parameters. A parameter we have seen before is memoized.
+
+
+// Compose and Pipe:
+// Compose (right to left)--> any sort of data transformation that we do should be obvious. System design principle.
+// data --> Fn --> data --> Fn
+
+// example code: (I like this code :). ) 
+const compose = (f, g) => (data) => f(g(data)); 
+const multiplyBy3 = (num) => num*3;
+const makePositive = (num) => Math.abs(num);
+const multiplyBy3AndAbsolute = compose(MultiplyBy3, makePositive);
+
+// Pipe --> composition but going left to right. E.g.:
+const pipe = (f, g) => (data) => g(f(data));
+
+// or:
+fn1(fn2(fn3(50)));
+compose(fn1, fn2, fn3)(50) // data --> fn3 --> fn2 --> fn1
+pipe(fn3, fn2, fn1)(50) //data --> fn3 --> fn2 --> fn1
+//same result because they undergo the same operations.
